@@ -2,12 +2,31 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Profile</title>
+<link rel="stylesheet" href="style.css">
+<script>
+	buttonClicked = (imageId, buttonId, timer) => {
+		const imageEle = document.getElementById(imageId);
+		const buttonEle = document.getElementById(buttonId);
+		buttonEle.disabled = "true";
+		imageEle.style.display = "block";
+
+		setTimeout(() => {
+			imageEle.style.display="none";
+			buttonEle.removeAttribute("disabled");
+		}, timer);
+	}
+</script>
 </head>
-<body bgcolor="#FBFFAE">
+<body>
 <h1>Profile Page</h1>
 <h2>Name : Bean</h2>
 <h2>Profession: Comedian</h2>
 <h2>Skills: Being funny</h2>
-<img src="https://purepng.com/public/uploads/medium/purepng.com-mr-beanmr-beanbritish-sitcomtitle-characterco-wrotecurtisgoodnight-mr-beancomedy-showrowan-atkinson-1701528650085yxltj.png" height="400px" width="300px"/>
+<button id="how-is-bean-button" class="generic-button" onclick='buttonClicked("bean-image", "how-is-bean-button", 1500)'>How is Bean?</button>
+<br />
+<br />
+<button id="jimmy-button" class="generic-button" onclick='buttonClicked("jimmy-image", "jimmy-button", 2500)'>Don't click this button !</button>
+<img id="bean-image" height="300px" width="300px" style="position:fixed; top:10px; left:400px; display:none;" src="https://c.tenor.com/vJqk_DRsOasAAAAC/tenor.gif" />
+<img display="none" id="jimmy-image" height="300px" width="300px" style="position:fixed; top:320px; left:400px; display:none;" src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzRhcWh3cGF2eDkwZmYwanJ3czF0b3g3M2M4b3FpZGd0MDRjMHYxeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/nbNWgtnMgIYpUSy3e9/giphy.webp" />
 </body>
 </html>
