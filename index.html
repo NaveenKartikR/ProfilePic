@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<div class="navbar">
-			<h1>Profile Page</h1>
+			<h1>Welcome to the Bean Page (Have you been here?😜)</h1>
 		</div>
 		<div class="profile-contents">
 			<div class="buttons-div">
@@ -23,24 +23,26 @@
 			</div>
 		</div>
 		<div class="merry-go-round">
-			<div id="prev" class="arrow-button">
+			<button id="prev" class="arrow-button">
 				<i class="fa fa-hand-o-left"></i>
-			</div>
+			</button>
 			<div class="images-div">
 				<div class="prev-image-holder">
 					<img id="prev-image" width="250px" height="250px" />
+					<img id="prev-prev-image" width="250px" height="250px" />
 				</div>
 				<div class="next-image-holder">
 					<img id="next-image" width="250px" height="250px" />
+					<img id="next-next-image" width="250px" height="250px" />
 				</div>
 				<div class="image-holder">
-					<img id="image-in-holder" width="400px" height="400px" />
+					<div style="width:400px; height:400px;"><img id="image-in-holder" width="400px" height="400px" /></div>
 					<div class="caption-holder"><div id="caption-text"></div></div>
 				</div>
 			</div>
-			<div id="next" class="arrow-button">
+			<button id="next" class="arrow-button">
 				<i class="fa fa-hand-o-right"></i>
-			</div>
+			</button>
 		</div>
 
 		<script src="logic.js" defer></script>

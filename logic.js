@@ -21,6 +21,8 @@ images = [
     ],
 ]
 
+const loadingImageLink = "https://cdn.dribbble.com/users/1415337/screenshots/10781083/loadingdots2.gif";
+
 let currentImageId = 0;
 let prevImageId = currentImageId-1 < 0 ? images.length-1 : currentImageId-1;
 let nextImageId = currentImageId+1 >= images.length ? 0 : currentImageId+1;
@@ -31,15 +33,54 @@ document.getElementById("caption-text").innerHTML = images[currentImageId][1];
 document.getElementById("prev-image").src = images[prevImageId][0];
 document.getElementById("next-image").src = images[nextImageId][0];
 
-setImageInHolder = (imageId) => {
-    prevImageId = imageId-1 < 0 ? images.length-1 : imageId-1;
-    nextImageId = imageId+1 >= images.length ? 0 : imageId+1;
+const myPromise = new Promise((func, reject) => {
+    func();
+  });
 
-    document.getElementById("image-in-holder").src = images[imageId][0];
-    document.getElementById("caption-text").innerHTML = images[imageId][1];
-
+setImageInHolder = (order) => {
     document.getElementById("prev-image").src = images[prevImageId][0];
+
+    document.getElementById("image-in-holder").src = images[currentImageId][0];
+    document.getElementById("caption-text").innerHTML = images[currentImageId][1];
+
     document.getElementById("next-image").src = images[nextImageId][0];
+    // if (order == "prev") {
+    //     document.getElementById("image-in-holder").src = loadingImageLink;
+    //     document.getElementById("caption-text").innerHTML = "";
+
+    //     document.getElementById("prev-image").src = images[prevImageId][0];
+
+    //     setTimeout(() => {
+    //         document.getElementById("next-image").src = loadingImageLink;
+
+    //         document.getElementById("image-in-holder").src = images[currentImageId][0];
+    //         document.getElementById("caption-text").innerHTML = images[currentImageId][1];
+    //     }, 500);
+
+    //     document.getElementById("next-image").src = images[nextImageId][0];
+    // } else if (order == "next") {
+
+    //     myPromise
+    //         .then(() => {
+    //             document.getElementById("image-in-holder").src = loadingImageLink;
+    //             document.getElementById("caption-text").innerHTML = "";
+    
+    //             document.getElementById("prev-image").src = images[prevImageId][0];
+    //         }, null)
+    //         .then(() => {
+    //             setTimeout(() => {
+    //                 document.getElementById("next-image").src = loadingImageLink;
+        
+    //                 document.getElementById("image-in-holder").src = images[currentImageId][0];
+    //                 document.getElementById("caption-text").innerHTML = images[currentImageId][1];
+    //             }, 200);
+    //         }, null)
+    //         .then(() => {
+    //             setTimeout(() => {
+    //                 document.getElementById("next-image").src = images[nextImageId][0];
+    //             }, 600);
+    //         }, null);
+    // }
 }
 
 buttonClicked = (imageId, buttonId, timer) => {
@@ -55,26 +96,84 @@ buttonClicked = (imageId, buttonId, timer) => {
     }
     
     setTimeout(() => {
-        setImageInHolder(currentImageId);
+        document.getElementById("image-in-holder").src = images[currentImageId][0];
+        document.getElementById("caption-text").innerHTML = images[currentImageId][1];
+
         buttonEle.removeAttribute("disabled");
     }, timer);
 }
 
 
 document.getElementById("prev").addEventListener("click", ()=>{
-    if (currentImageId-1 < 0) {
-        currentImageId = images.length-1;
+    document.getElementById("prev").disabled = "true";
+
+    nextImageId = currentImageId;
+    currentImageId = prevImageId;
+
+    if (prevImageId-1 < 0) {
+        prevImageId = images.length-1;
     } else {
-        currentImageId -= 1;
+        prevImageId -= 1;
     }
-    setImageInHolder(currentImageId);
+    // console.log("prevImageId:", prevImageId);
+    // console.log("currentImageId:", currentImageId);
+    // console.log("nextImageId:", nextImageId);
+    
+    document.getElementById("prev-prev-image").src = images[prevImageId][0];
+    
+    document.getElementById("image-in-holder").classList.add("current-image-holder-forward-animation");
+    document.getElementById("prev-image").classList.add("prev-image-holder-forward-animation");
+    
+    setTimeout(() => {
+        document.getElementById("caption-text").innerHTML = images[currentImageId][1];
+    }, 400);
+    
+    setTimeout(() => {
+        document.getElementById("next-image").src = images[nextImageId][0];
+        document.getElementById("prev-image").src = images[prevImageId][0];
+        document.getElementById("image-in-holder").src = images[currentImageId][0];
+
+        document.getElementById("image-in-holder").classList.remove("current-image-holder-forward-animation");
+        document.getElementById("prev-image").classList.remove("prev-image-holder-forward-animation");
+
+        document.getElementById("prev").removeAttribute("disabled");
+    }, 1000);
+
 });
 
 document.getElementById("next").addEventListener("click", ()=>{
-    if (currentImageId+1 >= images.length) {
-        currentImageId = 0;
+    document.getElementById("next").disabled = "true";
+
+    prevImageId = currentImageId;
+    currentImageId = nextImageId;
+
+    if (nextImageId+1 >= images.length) {
+        nextImageId = 0;
     } else {
-        currentImageId += 1;
+        nextImageId += 1;
     }
-    setImageInHolder(currentImageId);
+    // console.log("prevImageId:", prevImageId);
+    // console.log("currentImageId:", currentImageId);
+    // console.log("nextImageId:", nextImageId);
+
+    document.getElementById("next-next-image").src = images[nextImageId][0];
+    
+    document.getElementById("image-in-holder").classList.add("current-image-holder-backward-animation");
+    document.getElementById("next-image").classList.add("next-image-holder-backward-animation");
+    
+    setTimeout(() => {
+        document.getElementById("caption-text").innerHTML = images[currentImageId][1];
+    }, 400);
+    
+    setTimeout(() => {
+        document.getElementById("next-image").src = images[nextImageId][0];
+        document.getElementById("prev-image").src = images[prevImageId][0];
+        document.getElementById("image-in-holder").src = images[currentImageId][0];
+
+        document.getElementById("image-in-holder").classList.remove("current-image-holder-backward-animation");
+        document.getElementById("next-image").classList.remove("next-image-holder-backward-animation");
+
+        document.getElementById("next").removeAttribute("disabled");
+    }, 1000);
+
 });

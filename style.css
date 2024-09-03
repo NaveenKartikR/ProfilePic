@@ -3,15 +3,17 @@ body {
 }
 
 .navbar {
-    background-color: rgb(96, 28, 222);
+    background-color: #6f5847;
     border-radius: 4px;
     padding: 5px;
+    display: flex;
+    justify-content: center;
 }
 
 .navbar h1{
     padding-left: 15px;
     margin: 0px;
-    color: rgb(255, 244, 97);
+    color: rgb(255, 238, 0);
 }
 
 .generic-button {
@@ -33,7 +35,7 @@ body {
     transition: 0.2s;
 }
 
-#how-is-bean-button:disabled {
+#how-is-bean-button:disabled, #jimmy-button:disabled, #prev:disabled {
     background-color: rgb(195, 194, 206);
     color: rgb(104, 104, 104);
 }
@@ -50,11 +52,6 @@ body {
     color: rgb(255, 0, 0);
     background-color: white;
     transition: 0.2s;
-}
-
-#jimmy-button:disabled {
-    background-color: rgb(195, 194, 206);
-    color: rgb(104, 104, 104);
 }
 
 .profile-contents {
@@ -112,7 +109,7 @@ body {
     display: grid;
 }
 
-.image-holder, .prev-image-holder, .next-image-holder {
+#image-in-holder, .prev-image-holder, .next-image-holder {
     border: 1px solid;
     height: 400px;
     width: 400px;
@@ -122,6 +119,7 @@ body {
 .prev-image-holder, .next-image-holder {
     height: 250px;
     width: 250px;
+    position: relative;
     grid-row-start: 2;
     grid-row-end: 3;
 }
@@ -141,10 +139,58 @@ body {
     grid-column-end: 8;
     grid-row-start: 1;
     grid-row-end: 4;
+    position: relative;
 }
 
-#image-in-holder, #prev-image, #next-image {
+@keyframes current-backward-animation {
+    from { width: 400px; height: 400px; left: 0px; top:0px; }
+    to { width: 250px; height: 250px; left: -85px; top: 100px; }
+}
+.current-image-holder-backward-animation {
+    position: relative;
+    animation-name: current-backward-animation;
+    animation-duration: 1s;
+}
+
+@keyframes next-backward-animation {
+    from { width: 250px; height: 250px; left: 0px; top:0px; }
+    to { width: 400px; height: 400px; left: -235px; top: -100px; z-index: 2; }
+}
+.next-image-holder-backward-animation {
+    position: relative;
+    animation-name: next-backward-animation;
+    animation-duration: 1s;
+}
+
+@keyframes current-forward-animation {
+    from { width: 400px; height: 400px; left: 0px; top:0px; }
+    to { width: 250px; height: 250px; left: 230px; top: 100px; }
+}
+.current-image-holder-forward-animation {
+    position: relative;
+    animation-name: current-forward-animation;
+    animation-duration: 1s;
+}
+
+@keyframes prev-forward-animation {
+    from { width: 250px; height: 250px; left: 0px; top:0px; }
+    to { width: 400px; height: 400px; left: 85px; top: -100px; z-index: 2; }
+}
+.prev-image-holder-forward-animation {
+    position: relative;
+    animation-name: prev-forward-animation;
+    animation-duration: 1s;
+}
+
+#image-in-holder, #prev-prev-image, #prev-image, #next-image, #next-next-image {
     border-radius: 10px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+#prev-prev-image, #next-next-image {
+    z-index: -2;
 }
 
 .caption-holder {
