@@ -1,32 +1,48 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<title>Profile</title>
-<link rel="stylesheet" href="style.css">
-<script>
-	buttonClicked = (imageId, buttonId, timer) => {
-		const imageEle = document.getElementById(imageId);
-		const buttonEle = document.getElementById(buttonId);
-		buttonEle.disabled = "true";
-		imageEle.style.display = "block";
+	<head>
+		<title>Profile</title>
+		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+	<body>
+		<div class="navbar">
+			<h1>Profile Page</h1>
+		</div>
+		<div class="profile-contents">
+			<div class="buttons-div">
+				<button id="how-is-bean-button" class="generic-button" onclick='buttonClicked("bean-image", "how-is-bean-button", 1500)'>How is Bean?</button>
+			</div>
+			<div class="contents">
+				<h2>Name</h2> <h2 class="details">Bean</h2>
+				<h2>Profession</h2> <h2 class="details">Comedian</h2>
+				<h2>Skills</h2> <h2 class="details">Being funny</h2>
+			</div>
+			<div class="buttons-div">
+				<button id="jimmy-button" class="generic-button" onclick='buttonClicked("jimmy-image", "jimmy-button", 2500)'>Don't click this button !</button>
+			</div>
+		</div>
+		<div class="merry-go-round">
+			<div id="prev" class="arrow-button">
+				<i class="fa fa-hand-o-left"></i>
+			</div>
+			<div class="images-div">
+				<div class="prev-image-holder">
+					<img id="prev-image" width="250px" height="250px" />
+				</div>
+				<div class="next-image-holder">
+					<img id="next-image" width="250px" height="250px" />
+				</div>
+				<div class="image-holder">
+					<img id="image-in-holder" width="400px" height="400px" />
+					<div class="caption-holder"><div id="caption-text"></div></div>
+				</div>
+			</div>
+			<div id="next" class="arrow-button">
+				<i class="fa fa-hand-o-right"></i>
+			</div>
+		</div>
 
-		setTimeout(() => {
-			imageEle.style.display="none";
-			buttonEle.removeAttribute("disabled");
-		}, timer);
-	}
-</script>
-</head>
-<body>
-<h1>Profile Page</h1>
-<h2>Name : Bean</h2>
-<h2>Profession: Comedian</h2>
-<h2>Skills: Being funny</h2>
-<button id="how-is-bean-button" class="generic-button" onclick='buttonClicked("bean-image", "how-is-bean-button", 1500)'>How is Bean?</button>
-<br />
-<br />
-<button id="jimmy-button" class="generic-button" onclick='buttonClicked("jimmy-image", "jimmy-button", 2500)'>Don't click this button !</button>
-<img id="bean-image" height="300px" width="300px" style="position:fixed; top:10px; left:400px; display:none;" src="https://c.tenor.com/vJqk_DRsOasAAAAC/tenor.gif" />
-<img display="none" id="jimmy-image" height="300px" width="300px" style="position:fixed; top:320px; left:400px; display:none;" src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzRhcWh3cGF2eDkwZmYwanJ3czF0b3g3M2M4b3FpZGd0MDRjMHYxeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/nbNWgtnMgIYpUSy3e9/giphy.webp" />
-</body>
+		<script src="logic.js" defer></script>
+	</body>
 </html>

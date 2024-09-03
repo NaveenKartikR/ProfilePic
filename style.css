@@ -2,6 +2,18 @@ body {
     background-color: #FBFFAE;
 }
 
+.navbar {
+    background-color: rgb(96, 28, 222);
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.navbar h1{
+    padding-left: 15px;
+    margin: 0px;
+    color: rgb(255, 244, 97);
+}
+
 .generic-button {
     border: none;
     font-weight: 600;
@@ -43,4 +55,107 @@ body {
 #jimmy-button:disabled {
     background-color: rgb(195, 194, 206);
     color: rgb(104, 104, 104);
+}
+
+.profile-contents {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    justify-items: center;
+}
+
+.contents {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.details {
+    padding-left: 10px;
+    padding-top: 3px;
+    font-weight: 400;
+    font-size: 20px;
+    align-content: center;
+}
+
+.buttons-div {
+    align-content : center;
+}
+
+.merry-go-round {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 0.5fr;
+    align-items: center;
+    justify-items: center;
+}
+
+.arrow-button {
+    height: 50px;
+    width: 50px;
+    background-color: #2cd591;
+    border-radius: 10px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    font-size:35px;
+}
+
+.arrow-button:hover {
+    background-color:#c0eddb;
+    transition: 0.2s;
+}
+
+.arrow-button:active {
+    background-color:#2cd591;
+    transition: 0.2s;
+}
+
+.images-div {
+    display: grid;
+}
+
+.image-holder, .prev-image-holder, .next-image-holder {
+    border: 1px solid;
+    height: 400px;
+    width: 400px;
+    border-radius: 10px;
+}
+
+.prev-image-holder, .next-image-holder {
+    height: 250px;
+    width: 250px;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+.prev-image-holder {
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+.next-image-holder {
+    grid-column-start: 6;
+    grid-column-end: 9;
+}
+
+.image-holder {
+    grid-column-start: 2;
+    grid-column-end: 8;
+    grid-row-start: 1;
+    grid-row-end: 4;
+}
+
+#image-in-holder, #prev-image, #next-image {
+    border-radius: 10px;
+}
+
+.caption-holder {
+    border: 1px solid;
+    border-radius: 10px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+#caption-text {
+    align-content: center;
+    padding: 10px;
 }
