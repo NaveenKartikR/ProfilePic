@@ -32,13 +32,13 @@ document.getElementById("prev-image").src = images[prevImageId][0];
 document.getElementById("next-image").src = images[nextImageId][0];
 
 setImageInHolder = (imageId) => {
+    prevImageId = imageId-1 < 0 ? images.length-1 : imageId-1;
+    nextImageId = imageId+1 >= images.length ? 0 : imageId+1;
+
     document.getElementById("image-in-holder").src = images[imageId][0];
     document.getElementById("caption-text").innerHTML = images[imageId][1];
 
-    prevImageId = imageId-1 < 0 ? images.length-1 : imageId-1;
     document.getElementById("prev-image").src = images[prevImageId][0];
-    
-    nextImageId = imageId+1 >= images.length ? 0 : imageId+1;
     document.getElementById("next-image").src = images[nextImageId][0];
 }
 
