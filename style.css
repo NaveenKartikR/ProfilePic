@@ -35,10 +35,10 @@ body {
     transition: 0.2s;
 }
 
-#how-is-bean-button:disabled, #jimmy-button:disabled, #prev:disabled {
+/* #how-is-bean-button:disabled, #jimmy-button:disabled, #prev:disabled {
     background-color: rgb(195, 194, 206);
     color: rgb(104, 104, 104);
-}
+} */
 
 #jimmy-button {
     background-color: rgb(255, 0, 0);

@@ -37,9 +37,24 @@ const myPromise = new Promise((func, reject) => {
     func();
 });
 
-buttonClicked = (imageId, buttonId, timer) => {
-    const buttonEle = document.getElementById(buttonId);
-    buttonEle.disabled = "true";
+allButtons = ["how-is-bean-button", "jimmy-button", "prev", "next"];
+
+disableAllButtons = () => {
+    for (const buttonId of allButtons) {
+        document.getElementById(buttonId).disabled = "true";
+    }
+}
+
+enableAllButtons = () => {
+    for (const buttonId of allButtons) {
+        document.getElementById(buttonId).removeAttribute("disabled");
+    }
+}
+
+buttonClicked = (imageId, timer) => {
+    setTimeout(() => {
+        disableAllButtons();
+    }, 200);
 
     if (imageId == "bean-image") {
         document.getElementById("image-in-holder").src = "https://c.tenor.com/vJqk_DRsOasAAAAC/tenor.gif";
@@ -53,13 +68,15 @@ buttonClicked = (imageId, buttonId, timer) => {
         document.getElementById("image-in-holder").src = images[currentImageId][0];
         document.getElementById("caption-text").innerHTML = images[currentImageId][1];
 
-        buttonEle.removeAttribute("disabled");
+        enableAllButtons();
     }, timer);
 }
 
 
 document.getElementById("prev").addEventListener("click", ()=>{
-    document.getElementById("prev").disabled = "true";
+    setTimeout(() => {
+        disableAllButtons();
+    }, 200);
 
     nextImageId = currentImageId;
     currentImageId = prevImageId;
@@ -91,13 +108,15 @@ document.getElementById("prev").addEventListener("click", ()=>{
         document.getElementById("prev-image").classList.remove("prev-image-holder-forward-animation");
 
         document.getElementById("prev-prev-image").removeAttribute("src");
-        document.getElementById("prev").removeAttribute("disabled");
+        enableAllButtons();
     }, 1000);
 
 });
 
 document.getElementById("next").addEventListener("click", ()=>{
-    document.getElementById("next").disabled = "true";
+    setTimeout(() => {
+        disableAllButtons();
+    }, 200);
 
     prevImageId = currentImageId;
     currentImageId = nextImageId;
@@ -129,7 +148,7 @@ document.getElementById("next").addEventListener("click", ()=>{
         document.getElementById("next-image").classList.remove("next-image-holder-backward-animation");
 
         document.getElementById("next-next-image").removeAttribute("src");
-        document.getElementById("next").removeAttribute("disabled");
+        enableAllButtons();
     }, 1000);
 
 });
