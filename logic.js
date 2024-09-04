@@ -35,53 +35,7 @@ document.getElementById("next-image").src = images[nextImageId][0];
 
 const myPromise = new Promise((func, reject) => {
     func();
-  });
-
-setImageInHolder = (order) => {
-    document.getElementById("prev-image").src = images[prevImageId][0];
-
-    document.getElementById("image-in-holder").src = images[currentImageId][0];
-    document.getElementById("caption-text").innerHTML = images[currentImageId][1];
-
-    document.getElementById("next-image").src = images[nextImageId][0];
-    // if (order == "prev") {
-    //     document.getElementById("image-in-holder").src = loadingImageLink;
-    //     document.getElementById("caption-text").innerHTML = "";
-
-    //     document.getElementById("prev-image").src = images[prevImageId][0];
-
-    //     setTimeout(() => {
-    //         document.getElementById("next-image").src = loadingImageLink;
-
-    //         document.getElementById("image-in-holder").src = images[currentImageId][0];
-    //         document.getElementById("caption-text").innerHTML = images[currentImageId][1];
-    //     }, 500);
-
-    //     document.getElementById("next-image").src = images[nextImageId][0];
-    // } else if (order == "next") {
-
-    //     myPromise
-    //         .then(() => {
-    //             document.getElementById("image-in-holder").src = loadingImageLink;
-    //             document.getElementById("caption-text").innerHTML = "";
-    
-    //             document.getElementById("prev-image").src = images[prevImageId][0];
-    //         }, null)
-    //         .then(() => {
-    //             setTimeout(() => {
-    //                 document.getElementById("next-image").src = loadingImageLink;
-        
-    //                 document.getElementById("image-in-holder").src = images[currentImageId][0];
-    //                 document.getElementById("caption-text").innerHTML = images[currentImageId][1];
-    //             }, 200);
-    //         }, null)
-    //         .then(() => {
-    //             setTimeout(() => {
-    //                 document.getElementById("next-image").src = images[nextImageId][0];
-    //             }, 600);
-    //         }, null);
-    // }
-}
+});
 
 buttonClicked = (imageId, buttonId, timer) => {
     const buttonEle = document.getElementById(buttonId);
@@ -136,6 +90,7 @@ document.getElementById("prev").addEventListener("click", ()=>{
         document.getElementById("image-in-holder").classList.remove("current-image-holder-forward-animation");
         document.getElementById("prev-image").classList.remove("prev-image-holder-forward-animation");
 
+        document.getElementById("prev-prev-image").removeAttribute("src");
         document.getElementById("prev").removeAttribute("disabled");
     }, 1000);
 
@@ -173,6 +128,7 @@ document.getElementById("next").addEventListener("click", ()=>{
         document.getElementById("image-in-holder").classList.remove("current-image-holder-backward-animation");
         document.getElementById("next-image").classList.remove("next-image-holder-backward-animation");
 
+        document.getElementById("next-next-image").removeAttribute("src");
         document.getElementById("next").removeAttribute("disabled");
     }, 1000);
 
